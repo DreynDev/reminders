@@ -1,0 +1,60 @@
+<script src="scripts/datetime_checker.js"></script>
+<form id="edit-form" method="POST">
+  <h3>Редактирование напоминания</h3>
+  <input
+    type="text"
+    name="title"
+    value="{{ reminder.title }}"
+    placeholder="Название"
+    required
+  />
+  <input
+    type="text"
+    name="text"
+    value="{{ reminder.text }}"
+    placeholder="Заметки"
+  />
+  <div>
+    <label for="date">Дата напоминания:</label>
+    <input
+      type="date"
+      name="date"
+      id="date"
+      min="{{ current_datetime[:10] }}"
+      value="{{ reminder.reminder_at.date() if reminder.reminder_at else '' }}"
+    />
+  </div>
+  <div>
+    <label for="time">Время напоминания:</label>
+    <input
+      type="time"
+      name="time"
+      id="time"
+      value="{{ reminder.reminder_at.time().strftime('%H:%M') if reminder.reminder_at else '' }}"
+    />
+  </div>
+  <input
+    type="checkbox"
+    name="favorite"
+    {%
+    if
+    reminder.favorite
+    %}checked{%
+    endif
+    %}
+  />
+  Избранное
+  <input
+    type="checkbox"
+    name="complete"
+    {%
+    if
+    reminder.complete
+    %}checked{%
+    endif
+    %}
+  />
+  Завершено
+  <input type="submit" value="Сохранить изменения" />
+  <div><a href="#" class="close-modal">❌</a></div>
+</form>

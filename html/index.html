@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Напоминания</title>
+    <script src="scripts/notifications.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="styles/reminderForm.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <h1>Список напоминаний</h1>
+    <button id="create-reminder" class="create-reminder-btn">
+      Создать напоминание
+    </button>
+    <div class="category-boxes">
+      <h2>Сегодня</h2>
+      <ul>
+        {% for reminder in reminders %} {% if 'Сегодня' in reminder.category()
+        %}
+        <li>
+          <input
+            type="checkbox"
+            id="{{ reminder.id }}"
+            {%
+            if
+            reminder.complete
+            %}checked{%
+            endif
+            %}
+            class="reminder-checkbox"
+          />
+          <div class="text-content">
+            {{ reminder.reminder_at.strftime('%H:%M') }} | {{ reminder.title
+            }}{% if reminder.text %} - {{ reminder.text }}{% endif %}
+          </div>
+          <a href="#" class="edit-link" data-id="{{ reminder.id }}"
+            >Редактировать</a
+          >
+          <a href="#" class="remove-link" data-id="{{ reminder.id }}"
+            >Удалить</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+      <h2>В планах</h2>
+      <ul>
+        {% for reminder in reminders %} {% if 'В планах' in reminder.category()
+        %}
+        <li>
+          <input
+            type="checkbox"
+            id="{{ reminder.id }}"
+            {%
+            if
+            reminder.complete
+            %}checked{%
+            endif
+            %}
+            class="reminder-checkbox"
+          />
+          <div class="text-content">
+            {{ reminder.reminder_at.strftime('%Y-%m-%d %H:%M') }} | {{
+            reminder.title }} {% if reminder.text %}- {{ reminder.text }}{%
+            endif %}
+          </div>
+          <a href="#" class="edit-link" data-id="{{ reminder.id }}"
+            >Редактировать</a
+          >
+          <a href="#" class="remove-link" data-id="{{ reminder.id }}"
+            >Удалить</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+      <h2>Все</h2>
+      <ul>
+        {% for reminder in reminders %} {% if not reminder.complete %}
+        <li>
+          <input
+            type="checkbox"
+            id="{{ reminder.id }}"
+            {%
+            if
+            reminder.complete
+            %}checked{%
+            endif
+            %}
+            class="reminder-checkbox"
+          />
+          <div class="text-content">
+            {% if reminder.reminder_at is not none %}{{
+            reminder.reminder_at.strftime('%Y-%m-%d %H:%M') }} |{% endif %} {{
+            reminder.title }} {% if reminder.text %}- {{ reminder.text }}{%
+            endif %}
+          </div>
+          <a href="#" class="edit-link" data-id="{{ reminder.id }}"
+            >Редактировать</a
+          >
+          <a href="#" class="remove-link" data-id="{{ reminder.id }}"
+            >Удалить</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+      <h2>Избранные</h2>
+      <ul>
+        {% for reminder in reminders %} {% if 'Избранные' in reminder.category()
+        %}
+        <li>
+          <input
+            type="checkbox"
+            id="{{ reminder.id }}"
+            {%
+            if
+            reminder.complete
+            %}checked{%
+            endif
+            %}
+            class="reminder-checkbox"
+          />
+          <div class="text-content">
+            {{ reminder.title }}{% if reminder.text %} - {{ reminder.text
+            }}{%endif%}
+          </div>
+          <a href="#" class="edit-link" data-id="{{ reminder.id }}"
+            >Редактировать</a
+          >
+          <a href="#" class="remove-link" data-id="{{ reminder.id }}"
+            >Удалить</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+      <h2>Завершено</h2>
+      <ul>
+        {% for reminder in reminders %} {% if 'Завершено' in reminder.category()
+        %}
+        <li>
+          <input
+            type="checkbox"
+            id="{{ reminder.id }}"
+            {%
+            if
+            reminder.complete
+            %}checked{%
+            endif
+            %}
+            class="reminder-checkbox"
+          />
+          <div class="text-content">
+            {% if reminder.reminder_at is not none %}{{
+            reminder.reminder_at.strftime('%Y-%m-%d %H:%M') }} |{% endif %} {{
+            reminder.title }} {% if reminder.text %}- {{ reminder.text }}{%
+            endif %}
+          </div>
+          <a href="#" class="edit-link" data-id="{{ reminder.id }}"
+            >Редактировать</a
+          >
+          <a href="#" class="remove-link" data-id="{{ reminder.id }}"
+            >Удалить</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+    </div>
+    <div id="reminder-modal">
+      <div id="reminder-modal-content"></div>
+    </div>
+  </body>
+</html>
