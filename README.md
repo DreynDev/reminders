@@ -10,9 +10,9 @@ It's a web application written in Flask that allows users to create, edit and tr
 
 ## Installation
 
-1. Clone the repository: git clone https://github.com/DreynDev/reminders.git
-2. Install dependencies: pip install -r requirements.txt
-3. Launch the application: python app.py
+1. Clone the repository: `git clone https://github.com/DreynDev/reminders.git`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Launch the application: `python app.py`
 4. Open the application in the browser: `http://localhost:5000`
 
 ## Technologies
