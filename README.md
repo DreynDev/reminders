@@ -1,6 +1,6 @@
 # Flask Reminder App
 
-It's a web application written in Flask that allows users to create, edit and track their reminders.
+It's a web application written in Python with Flask that allows users to create, edit and track their reminders.
 
 ## Features
 
@@ -18,4 +18,4 @@ It's a web application written in Flask that allows users to create, edit and tr
 ## Technologies
 
 - Flask
-- SQLAlchemy
+- SQLite (SQLAlchemy)
